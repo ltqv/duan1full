@@ -2,6 +2,7 @@ package com.mycompany.component.Student;
 
 import com.mycompany.event.student.EventMenuSelected;
 import com.mycompany.model.student.Model_Menu;
+import com.raven.main.Main;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
@@ -11,6 +12,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import login_form.Logins;
 
 public class Menu extends javax.swing.JPanel {
 
@@ -86,6 +89,7 @@ public class Menu extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    
     @Override
     protected void paintChildren(Graphics grphcs) {
         Graphics2D g2 = (Graphics2D) grphcs;

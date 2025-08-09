@@ -16,7 +16,7 @@ public class Logins extends javax.swing.JFrame implements LoginController {
 
     public Logins() {
         initComponents();
-this.setUndecorated(true);
+this.setUndecorated(false);
 
         setLocationRelativeTo(null);
 

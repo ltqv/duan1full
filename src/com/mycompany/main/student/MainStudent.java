@@ -2,6 +2,7 @@ package com.mycompany.main.student;
 
 import com.mycompany.event.student.EventMenuSelected;
 import com.mycompany.form.student.Form_Home;
+import com.mycompany.form.student.Form_Logout;
 import com.mycompany.form.student.Form_lsHocTap;
 import com.mycompany.form.student.Form_hocPhi;
 import com.mycompany.form.student.Form_baiKiemTra;
@@ -33,7 +34,7 @@ public class MainStudent extends javax.swing.JFrame {
                 } else if (index == 4) {
                      setForm(new Form_lsHocTap());
                 } else if (index == 5) {
-                   
+                    setForm(new Form_Logout());
                 }
             }
         });
@@ -52,9 +53,9 @@ public class MainStudent extends javax.swing.JFrame {
     private void initComponents() {
 
         panelBorder1 = new com.mycompany.swing.student.PanelBorder();
-        menu = new com.mycompany.component.Student.Menu();
         header2 = new com.mycompany.component.Student.Header();
         mainPanel = new javax.swing.JPanel();
+        menu = new com.mycompany.component.Student.Menu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -69,11 +70,11 @@ public class MainStudent extends javax.swing.JFrame {
         panelBorder1Layout.setHorizontalGroup(
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBorder1Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
+                .addContainerGap()
                 .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(header2, javax.swing.GroupLayout.DEFAULT_SIZE, 1018, Short.MAX_VALUE)
+                    .addComponent(header2, javax.swing.GroupLayout.DEFAULT_SIZE, 1012, Short.MAX_VALUE)
                     .addGroup(panelBorder1Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

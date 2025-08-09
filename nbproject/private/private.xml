@@ -3,30 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Duan1/duan1-main/src/com/raven/util/XAuth.java</file>
-            <file>file:/D:/Duan1/duan1-main/src/com/raven/swing/ListMenu.java</file>
-            <file>file:/D:/Duan1/duan1-main/src/com/mycompany/component/Student/Menu.java</file>
-            <file>file:/D:/Duan1/duan1-main/src/com/raven/util/XDate.java</file>
-            <file>file:/D:/Duan1/duan1-main/src/com/raven/form/Form_1.java</file>
-            <file>file:/D:/Duan1/duan1-main/src/com/mycompany/form/student/Form_khoaHoc.java</file>
-            <file>file:/D:/Duan1/duan1-main/src/com/mycompany/form/teacher/Form_qlLichHoc.java</file>
-            <file>file:/D:/Duan1/duan1-main/src/com/mycompany/form/student/Form_Home.java</file>
-            <file>file:/D:/Duan1/duan1-main/src/com/raven/form/Form_Home.java</file>
-            <file>file:/D:/Duan1/duan1-main/src/com/raven/event/EventMenuSelected.java</file>
-            <file>file:/D:/Duan1/duan1-main/src/com/mycompany/form/student/Form_hocPhi.java</file>
-            <file>file:/D:/Duan1/duan1-main/src/com/raven/form/Form_2.java</file>
-            <file>file:/D:/Duan1/duan1-main/src/com/raven/util/XQuery.java</file>
-            <file>file:/D:/Duan1/duan1-main/src/com/raven/util/XJdbc.java</file>
-            <file>file:/D:/Duan1/duan1-main/src/com/mycompany/form/student/Form_lsHocTap.java</file>
-            <file>file:/D:/Duan1/duan1-main/src/com/mycompany/form/teacher/Form_qlLopHoc.java</file>
-            <file>file:/D:/Duan1/duan1-main/src/com/raven/model/Model_Menu.java</file>
-            <file>file:/D:/Duan1/duan1-main/src/com/mycompany/form/teacher/Form_Diem.java</file>
-            <file>file:/D:/Duan1/duan1-main/src/com/mycompany/form/student/Form_baiKiemTra.java</file>
-            <file>file:/D:/Duan1/duan1-main/src/com/raven/main/Main.java</file>
-            <file>file:/D:/Duan1/duan1-main/src/com/raven/component/Menu.java</file>
-            <file>file:/D:/Duan1/duan1-main/src/com/raven/util/XStr.java</file>
-            <file>file:/D:/Duan1/duan1-main/src/login_form/Logins.java</file>
-            <file>file:/D:/Duan1/duan1-main/src/com/mycompany/main/student/MainStudent.java</file>
+            <file>file:/D:/FPT%20Polytechnic/JAVA/Source_GitHub/duan1full/src/com/mycompany/form/student/Form_Logout.java</file>
+            <file>file:/D:/FPT%20Polytechnic/JAVA/Source_GitHub/duan1full/src/com/mycompany/main/student/MainStudent.java</file>
         </group>
     </open-files>
 </project-private>
