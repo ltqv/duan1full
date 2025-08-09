@@ -6,7 +6,7 @@ import java.util.Date;
 public class Exam {
     private String id;
     private String tieu_de;
-    private java.sql.Timestamp ngay_tao;
+    private Date ngay_tao;
     private int thoi_luong;
     private int tong_so_cau;
     private Date thoi_gian_bat_dau;
@@ -16,7 +16,7 @@ public class Exam {
     public Exam() {
     }
 
-    public Exam(String id, String tieu_de, Timestamp ngay_tao, int thoi_luong, int tong_so_cau, Date thoi_gian_bat_dau, Date thoi_gian_ket_thuc, boolean kich_hoat) {
+    public Exam(String id, String tieu_de, Date ngay_tao, int thoi_luong, int tong_so_cau, Date thoi_gian_bat_dau, Date thoi_gian_ket_thuc, boolean kich_hoat) {
         this.id = id;
         this.tieu_de = tieu_de;
         this.ngay_tao = ngay_tao;
@@ -43,7 +43,7 @@ public class Exam {
         this.tieu_de = tieu_de;
     }
 
-    public Timestamp getNgay_tao() {
+    public Date getNgay_tao() {
         return ngay_tao;
     }
 

@@ -3,8 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/FPT%20Polytechnic/JAVA/Source_GitHub/duan1full/src/com/mycompany/form/student/Form_Logout.java</file>
-            <file>file:/D:/FPT%20Polytechnic/JAVA/Source_GitHub/duan1full/src/com/mycompany/main/student/MainStudent.java</file>
+            <file>file:/D:/JAVA/duan1full-main/duan1full-main/src/com/mycompany/form/student/Form_khoaHoc.java</file>
+            <file>file:/D:/JAVA/duan1full-main/duan1full-main/src/com/mycompany/form/student/Form_lsHocTap.java</file>
+            <file>file:/D:/JAVA/duan1full-main/duan1full-main/src/com/mycompany/form/student/Form_baiKiemTra.java</file>
+            <file>file:/D:/JAVA/duan1full-main/duan1full-main/src/com/mycompany/form/student/Form_Home.java</file>
+            <file>file:/D:/JAVA/duan1full-main/duan1full-main/src/com/mycompany/form/student/Form_hocPhi.java</file>
+            <file>file:/D:/JAVA/duan1full-main/duan1full-main/src/com/mycompany/main/student/MainStudent.java</file>
         </group>
     </open-files>
 </project-private>
