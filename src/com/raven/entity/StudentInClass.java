@@ -4,12 +4,12 @@ public class StudentInClass {
     private int id;
     private String id_lop;
     private String id_hoc_vien;
-    private String trang_thai;
+    private boolean trang_thai;
 
     public StudentInClass() {
     }
 
-    public StudentInClass(int id, String id_lop, String id_hoc_vien, String trang_thai) {
+    public StudentInClass(int id, String id_lop, String id_hoc_vien, boolean trang_thai) {
         this.id = id;
         this.id_lop = id_lop;
         this.id_hoc_vien = id_hoc_vien;
@@ -40,11 +40,11 @@ public class StudentInClass {
         this.id_hoc_vien = id_hoc_vien;
     }
 
-    public String getTrang_thai() {
+    public boolean isTrang_thai() {
         return trang_thai;
     }
 
-    public void setTrang_thai(String trang_thai) {
+    public void setTrang_thai(boolean trang_thai) {
         this.trang_thai = trang_thai;
     }
 

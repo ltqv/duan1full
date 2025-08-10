@@ -1,6 +1,5 @@
 package com.raven.entity;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 public class Exam {
@@ -47,7 +46,7 @@ public class Exam {
         return ngay_tao;
     }
 
-    public void setNgay_tao(Timestamp ngay_tao) {
+    public void setNgay_tao(Date ngay_tao) {
         this.ngay_tao = ngay_tao;
     }
 

@@ -1,15 +1,215 @@
-
 package com.mycompany.form.teacher;
 
+import com.raven.DAO.StudentInClassDAO;
+import com.raven.DAOImpl.StudenInClassDAOImpl;
+import com.raven.entity.StudentInClass;
+import com.raven.util.XDialog;
+import java.util.List;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
+import javax.swing.table.DefaultTableModel;
 
-public class Form_qlHocSinh extends javax.swing.JPanel {
+public class Form_qlHocSinh extends javax.swing.JPanel implements com.raven.Controller.Form_qlHocSinh {
 
- 
+    StudentInClassDAO dao = new StudenInClassDAOImpl();
+    List<StudentInClass> items = List.of();
+
     public Form_qlHocSinh() {
         initComponents();
+        this.addAncestorListener(new AncestorListener() {
+            @Override
+            public void ancestorAdded(AncestorEvent event) {
+                open(); // Gọi khi panel được thêm vào giao diện
+            }
+
+            @Override
+            public void ancestorRemoved(AncestorEvent event) {
+            }
+
+            @Override
+            public void ancestorMoved(AncestorEvent event) {
+            }
+        });
+        txtID.setEditable(false);
     }
 
-  
+    @Override
+    public void open() {
+        this.fillToTable();
+        this.clear();
+    }
+
+    @Override
+    public void fillToTable() {
+        DefaultTableModel model1 = (DefaultTableModel) tblhocVien.getModel();
+        model1.setRowCount(0);
+
+        items = dao.findAll();
+        items.forEach(item -> {
+            Object[] rowData = {
+                item.getId(),
+                item.getId_lop(),
+                item.getId_hoc_vien(),
+                item.isTrang_thai() ? "Đang học" : "Bảo lưu"
+            };
+            model1.addRow(rowData);
+        });
+        tblhocVien.setDefaultEditor(Object.class, null);
+
+        DefaultTableModel model2 = (DefaultTableModel) tblhocVien2.getModel();
+        model2.setRowCount(0);
+
+        items = dao.findAll();
+        items.forEach(item -> {
+            Object[] rowData = {
+                item.getId(),
+                item.getId_lop(),
+                item.getId_hoc_vien(),
+                item.isTrang_thai() ? "Đang học" : "Bảo lưu"
+            };
+            model2.addRow(rowData);
+        });
+        tblhocVien2.setDefaultEditor(Object.class, null);
+    }
+
+    @Override
+    public void edit() {
+        StudentInClass entity = items.get(tblhocVien2.getSelectedRow());
+        this.setForm(entity);
+        this.setEditable(true);
+        tabs.setSelectedIndex(1);
+    }
+
+    @Override
+    public void checkAll() {
+        this.setCheckedAll(true);
+    }
+
+    @Override
+    public void uncheckAll() {
+        this.setCheckedAll(false);
+    }
+
+    private void setCheckedAll(boolean checked) {
+        for (int i = 0; i < tblhocVien.getRowCount(); i++) {
+            tblhocVien.setValueAt(checked, i, 2);
+        }
+    }
+
+    @Override
+    public void deleteCheckedItems() {
+        if (XDialog.confirm("Bạn thực sự muốn xóa các mục chọn?")) {
+            for (int i = 0; i < tblhocVien.getRowCount(); i++) {
+                if ((Boolean) tblhocVien.getValueAt(i, 2)) {
+                    dao.deleteById(items.get(i).getId());
+                }
+            }
+            this.fillToTable();
+        }
+    }
+
+    @Override
+    public void setForm(StudentInClass entity) {
+        txtID.setText(String.valueOf(entity.getId()));
+        txtIDLopGV.setText(entity.getId_hoc_vien());
+        txtIDHV.setText(entity.getId_hoc_vien());
+        if (entity.isTrang_thai()) { // true
+            cbotrangThai.setSelectedItem("Đang học");
+        } else { // false
+            cbotrangThai.setSelectedItem("Bảo lưu");
+        }
+
+    }
+
+    @Override
+    public StudentInClass getForm() {
+        StudentInClass entity = new StudentInClass();
+        entity.setId_lop(txtIDLopGV.getText());
+        entity.setId_hoc_vien(txtIDHV.getText());
+        String selected = cbotrangThai.getSelectedItem().toString();
+        if ("ĐANG HỌC".equals(selected)) {
+            entity.setTrang_thai(true);
+        } else {
+            entity.setTrang_thai(false);
+        }
+        return entity;
+    }
+
+    @Override
+    public void create() {
+        StudentInClass entity = this.getForm();
+        dao.create(entity);
+        this.fillToTable();
+        this.clear();
+    }
+
+    @Override
+    public void update() {
+        StudentInClass entity = this.getForm();
+        dao.update(entity);
+        this.fillToTable();
+    }
+
+    @Override
+    public void delete() {
+        if (XDialog.confirm("Bạn thực sự muốn xóa?")) {
+            int id = Integer.parseInt(txtID.getText());
+            dao.deleteById(id);
+            this.fillToTable();
+            this.clear();
+        }
+    }
+
+    @Override
+    public void clear() {
+        this.setForm(new StudentInClass());
+        this.setEditable(false);
+    }
+
+    @Override
+    public void setEditable(boolean editable) {
+        txtID.setEnabled(!editable);
+        btnthem.setEnabled(!editable);
+        btncapNhat.setEnabled(editable);
+        btnxoa.setEnabled(editable);
+
+        int rowCount = tblhocVien.getRowCount();
+
+    }
+
+    @Override
+    public void moveFirst() {
+        this.moveTo(0);
+    }
+
+    @Override
+    public void movePrevious() {
+        this.moveTo(tblhocVien.getSelectedRow() - 1);
+    }
+
+    @Override
+    public void moveNext() {
+        this.moveTo(tblhocVien.getSelectedRow() + 1);
+    }
+
+    @Override
+    public void moveLast() {
+        this.moveTo(tblhocVien.getRowCount() - 1);
+    }
+
+    @Override
+    public void moveTo(int index) {
+        if (index < 0) {
+            this.moveLast();
+        } else if (index >= tblhocVien.getRowCount()) {
+            this.moveFirst();
+        } else {
+            tblhocVien.clearSelection();
+            tblhocVien.setRowSelectionInterval(index, index);
+            this.edit();
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -309,7 +509,7 @@ public class Form_qlHocSinh extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1079, Short.MAX_VALUE)
+            .addGap(0, 1085, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(0, 2, Short.MAX_VALUE)
@@ -318,7 +518,7 @@ public class Form_qlHocSinh extends javax.swing.JPanel {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 430, Short.MAX_VALUE)
+            .addGap(0, 442, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -350,22 +550,27 @@ public class Form_qlHocSinh extends javax.swing.JPanel {
 
     private void tblhocVien2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblhocVien2MouseClicked
         // TODO add your handling code here:
+        if (evt.getClickCount() == 2) {
+            this.edit();
+        }
     }//GEN-LAST:event_tblhocVien2MouseClicked
 
     private void btnthemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthemActionPerformed
         // TODO add your handling code here:
+        this.create();
     }//GEN-LAST:event_btnthemActionPerformed
 
     private void btnxoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnxoaActionPerformed
         // TODO add your handling code here:
+        this.delete();
     }//GEN-LAST:event_btnxoaActionPerformed
 
     private void btncapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncapNhatActionPerformed
-
+        this.update();
     }//GEN-LAST:event_btncapNhatActionPerformed
 
     private void btnlamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlamMoiActionPerformed
-
+        this.clear();
     }//GEN-LAST:event_btnlamMoiActionPerformed
 
     private void cbotrangThaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbotrangThaiActionPerformed

@@ -18,7 +18,7 @@ public class StudenInClassDAOImpl implements StudentInClassDAO{
         Object[] values = { 
             entity.getId_lop(),
             entity.getId_hoc_vien(),
-            entity.getTrang_thai()
+            entity.isTrang_thai()
         }; 
         XJdbc.executeUpdate(createSql, values); 
         return entity; 
@@ -28,7 +28,8 @@ public class StudenInClassDAOImpl implements StudentInClassDAO{
         Object[] values = {  
             entity.getId_lop(),
             entity.getId_hoc_vien(),
-            entity.getTrang_thai()
+            entity.isTrang_thai(),
+            entity.getId()
         }; 
         XJdbc.executeUpdate(updateSql, values); 
     } 
