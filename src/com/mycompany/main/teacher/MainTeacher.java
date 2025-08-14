@@ -1,6 +1,10 @@
 package com.mycompany.main.teacher;
 
 import com.mycompany.event.teacher.EventMenuSelected;
+<<<<<<< HEAD
+=======
+import com.mycompany.form.teacher.Form_Logout;
+>>>>>>> a13e521 (up lại)
 import com.mycompany.form.teacher.Form_Diem;
 import com.mycompany.form.teacher.Form_Home;
 
@@ -35,7 +39,11 @@ public class MainTeacher extends javax.swing.JFrame {
                 } else if (index == 5) {
                     setForm(new Form_Diem());
                 } else if (index == 6) {
+<<<<<<< HEAD
              
+=======
+               setForm(new Form_Logout());
+>>>>>>> a13e521 (up lại)
                 }
             }
         });

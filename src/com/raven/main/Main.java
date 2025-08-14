@@ -8,6 +8,10 @@ import com.raven.form.Form_3;
 import com.raven.form.Form_4;
 
 import com.raven.form.Form_Home;
+<<<<<<< HEAD
+=======
+import com.raven.form.Form_Logout;
+>>>>>>> a13e521 (up lại)
 import java.awt.Color;
 import javax.swing.JComponent;
 
@@ -44,7 +48,13 @@ public class Main extends javax.swing.JFrame {
                     setForm(form3);
                 } else if (index ==4){
                 setForm(form4);
+<<<<<<< HEAD
                 } 
+=======
+                } else if (index == 5){
+                    setForm(new Form_Logout());
+                }
+>>>>>>> a13e521 (up lại)
             }
         });
        

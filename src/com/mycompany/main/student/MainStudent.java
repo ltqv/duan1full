@@ -6,6 +6,10 @@ import com.mycompany.form.student.Form_lsHocTap;
 import com.mycompany.form.student.Form_hocPhi;
 import com.mycompany.form.student.Form_baiKiemTra;
 import com.mycompany.form.student.Form_khoaHoc;
+<<<<<<< HEAD
+=======
+import com.mycompany.form.student.Form_Logout;
+>>>>>>> a13e521 (up lại)
 
 import com.mycompany.swing.student.ScrollBar;
 import java.awt.Color;
@@ -33,7 +37,11 @@ public class MainStudent extends javax.swing.JFrame {
                 } else if (index == 4) {
                      setForm(new Form_lsHocTap());
                 } else if (index == 5) {
+<<<<<<< HEAD
                    
+=======
+                  setForm(new Form_Logout());
+>>>>>>> a13e521 (up lại)
                 }
             }
         });
