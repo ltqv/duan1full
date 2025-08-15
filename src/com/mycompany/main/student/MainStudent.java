@@ -1,17 +1,13 @@
 package com.mycompany.main.student;
 
 import com.mycompany.event.student.EventMenuSelected;
+import com.mycompany.form.student.Form_Diem;
 import com.mycompany.form.student.Form_Home;
 import com.mycompany.form.student.Form_lsHocTap;
 import com.mycompany.form.student.Form_hocPhi;
 import com.mycompany.form.student.Form_baiKiemTra;
 import com.mycompany.form.student.Form_khoaHoc;
-<<<<<<< HEAD
-=======
 import com.mycompany.form.student.Form_Logout;
->>>>>>> a13e521 (up lại)
-
-import com.mycompany.swing.student.ScrollBar;
 import java.awt.Color;
 import javax.swing.JComponent;
 
@@ -19,7 +15,6 @@ public class MainStudent extends javax.swing.JFrame {
 
     public MainStudent() {
         initComponents();
-   
 
         setBackground(new Color(0, 0, 0, 0));
         menu.initMoving(MainStudent.this);
@@ -33,21 +28,20 @@ public class MainStudent extends javax.swing.JFrame {
                 } else if (index == 2) {
                      setForm(new Form_baiKiemTra());
                 } else if (index == 3) {
-                   setForm(new Form_hocPhi());
+                   setForm(new Form_Diem());
                 } else if (index == 4) {
-                     setForm(new Form_lsHocTap());
+                     setForm(new Form_hocPhi());
                 } else if (index == 5) {
-<<<<<<< HEAD
-                   
-=======
+                   setForm(new Form_lsHocTap());
+                } else if (index == 6) {
                   setForm(new Form_Logout());
->>>>>>> a13e521 (up lại)
+
                 }
             }
         });
         setForm(new Form_Home());
     }
-    
+
     private void setForm(JComponent com) {
         mainPanel.removeAll();
         mainPanel.add(com);
@@ -113,7 +107,7 @@ public class MainStudent extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public static void main(String args[]) {
-       
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainStudent().setVisible(true);

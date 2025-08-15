@@ -350,13 +350,13 @@
                                                           <Component id="txttgkt" min="-2" pref="140" max="-2" attributes="0"/>
                                                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                                                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                          <Component id="txtkichhoat" min="-2" pref="118" max="-2" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                                          <Component id="chkkichhoat" min="-2" max="-2" attributes="0"/>
                                                       </Group>
                                                   </Group>
                                               </Group>
                                           </Group>
-                                          <EmptySpace pref="10" max="32767" attributes="0"/>
+                                          <EmptySpace pref="23" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
@@ -374,7 +374,7 @@
                                               <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="txtthoiluong" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="txtIDHocphi1" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="txttongcau" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -383,11 +383,11 @@
                                               <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="txttgkt" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="txtkichhoat" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="chkkichhoat" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="jScrollPane1" min="-2" pref="216" max="-2" attributes="0"/>
-                                          <EmptySpace pref="21" max="32767" attributes="0"/>
+                                          <EmptySpace pref="28" max="32767" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="btnthem" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="btnxoa" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -425,8 +425,6 @@
                                   <Properties>
                                     <Property name="text" type="java.lang.String" value="K&#xed;ch ho&#x1ea1;t"/>
                                   </Properties>
-                                </Component>
-                                <Component class="javax.swing.JTextField" name="txtkichhoat">
                                 </Component>
                                 <Container class="javax.swing.JScrollPane" name="jScrollPane1">
                                   <AuxValues>
@@ -562,6 +560,8 @@
                                   </Properties>
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="txtthoiluong">
+                                </Component>
+                                <Component class="javax.swing.JCheckBox" name="chkkichhoat">
                                 </Component>
                               </SubComponents>
                             </Container>

@@ -1,6 +1,8 @@
 package com.raven.entity;
 
 import java.util.Date;
+import java.sql.Time;
+
 
 public class Exam {
     private String id;
@@ -8,14 +10,14 @@ public class Exam {
     private Date ngay_tao;
     private int thoi_luong;
     private int tong_so_cau;
-    private Date thoi_gian_bat_dau;
-    private Date thoi_gian_ket_thuc;
+    private Time thoi_gian_bat_dau;
+    private Time thoi_gian_ket_thuc;
     private boolean kich_hoat;
 
     public Exam() {
     }
 
-    public Exam(String id, String tieu_de, Date ngay_tao, int thoi_luong, int tong_so_cau, Date thoi_gian_bat_dau, Date thoi_gian_ket_thuc, boolean kich_hoat) {
+    public Exam(String id, String tieu_de, Date ngay_tao, int thoi_luong, int tong_so_cau, Time thoi_gian_bat_dau, Time thoi_gian_ket_thuc, boolean kich_hoat) {
         this.id = id;
         this.tieu_de = tieu_de;
         this.ngay_tao = ngay_tao;
@@ -70,7 +72,7 @@ public class Exam {
         return thoi_gian_bat_dau;
     }
 
-    public void setThoi_gian_bat_dau(Date thoi_gian_bat_dau) {
+    public void setThoi_gian_bat_dau(Time thoi_gian_bat_dau) {
         this.thoi_gian_bat_dau = thoi_gian_bat_dau;
     }
 
@@ -78,7 +80,7 @@ public class Exam {
         return thoi_gian_ket_thuc;
     }
 
-    public void setThoi_gian_ket_thuc(Date thoi_gian_ket_thuc) {
+    public void setThoi_gian_ket_thuc(Time thoi_gian_ket_thuc) {
         this.thoi_gian_ket_thuc = thoi_gian_ket_thuc;
     }
 

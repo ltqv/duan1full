@@ -221,7 +221,7 @@
                                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                           <Table columnCount="5" rowCount="4">
                                             <Column editable="true" title="ID" type="java.lang.String"/>
-                                            <Column editable="true" title="ID B&#xe0;i l&#xe0;m" type="java.lang.String"/>
+                                            <Column editable="true" title="ID B&#xe0;i ki&#x1ec3;m tra" type="java.lang.String"/>
                                             <Column editable="true" title="&#x110;i&#x1ec3;m" type="java.lang.Float"/>
                                             <Column editable="true" title="Nh&#x1ead;n x&#xe9;t" type="java.lang.String"/>
                                             <Column editable="true" title="Ng&#xe0;y ch&#x1ea5;m" type="java.lang.Object"/>
@@ -304,7 +304,7 @@
                                                           <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                                                           <Component id="txtIDHocSinh" min="-2" max="-2" attributes="0"/>
                                                           <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                                          <Component id="txtIDBaiLam" min="-2" pref="141" max="-2" attributes="0"/>
+                                                          <Component id="txtIDBaikiemtra" min="-2" pref="141" max="-2" attributes="0"/>
                                                           <EmptySpace max="32767" attributes="0"/>
                                                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                                           <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
@@ -338,7 +338,7 @@
                                                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                                                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                                                       <Component id="txtID" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="txtIDBaiLam" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="txtIDBaikiemtra" alignment="3" min="-2" max="-2" attributes="0"/>
                                                       <Component id="txtDiem" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   </Group>
                                                   <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
@@ -373,7 +373,7 @@
                                 </Component>
                                 <Component class="javax.swing.JLabel" name="txtIDHocSinh">
                                   <Properties>
-                                    <Property name="text" type="java.lang.String" value="ID B&#xe0;i l&#xe0;m"/>
+                                    <Property name="text" type="java.lang.String" value="ID B&#xe0;i ki&#x1ec3;m tra"/>
                                   </Properties>
                                 </Component>
                                 <Component class="javax.swing.JLabel" name="jLabel3">
@@ -398,7 +398,7 @@
                                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                           <Table columnCount="5" rowCount="4">
                                             <Column editable="true" title="ID" type="java.lang.String"/>
-                                            <Column editable="true" title="ID B&#xe0;i l&#xe0;m" type="java.lang.String"/>
+                                            <Column editable="true" title="ID B&#xe0;i ki&#x1ec3;m tra" type="java.lang.String"/>
                                             <Column editable="true" title="&#x110;i&#x1ec3;m" type="java.lang.String"/>
                                             <Column editable="true" title="Nh&#x1ead;n x&#xe9;t" type="java.lang.String"/>
                                             <Column editable="true" title="Ng&#xe0;y ch&#x1ea5;m" type="java.lang.Object"/>
@@ -482,7 +482,7 @@
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="txtID">
                                 </Component>
-                                <Component class="javax.swing.JTextField" name="txtIDBaiLam">
+                                <Component class="javax.swing.JTextField" name="txtIDBaikiemtra">
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="txtDiem">
                                 </Component>

@@ -22,7 +22,7 @@ public class LearningHistoryDAOImpl implements LearningHistoryDAO{
             entity.getId_lop(),
             entity.getId_lich_hoc(),
             entity.getNgay_hoc_thuc_te(),
-            entity.getCo_mat(),
+            entity.isCo_mat(),
             entity.getGhi_chu()
         }; 
         XJdbc.executeUpdate(createSql, values); 
@@ -35,7 +35,7 @@ public class LearningHistoryDAOImpl implements LearningHistoryDAO{
             entity.getId_lop(),
             entity.getId_lich_hoc(),
             entity.getNgay_hoc_thuc_te(),
-            entity.getCo_mat(),
+            entity.isCo_mat(),
             entity.getGhi_chu(),
             entity.getId()
         }; 

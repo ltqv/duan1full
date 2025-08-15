@@ -6,9 +6,9 @@ import com.raven.Controller.LoginController;
 import com.raven.DAO.UserDAO;
 import com.raven.DAOImpl.UserDAOImpl;
 import com.raven.entity.User;
-import com.raven.main.Main;
 import com.raven.util.XAuth;
 import com.raven.util.XDialog;
+import com.raven.main.Main;
 import java.awt.Color;
 import javax.swing.JCheckBox;
 
@@ -16,17 +16,17 @@ public class Logins extends javax.swing.JFrame implements LoginController {
 
     public Logins() {
         initComponents();
-this.setUndecorated(true);
+        this.setUndecorated(true);
 
         setLocationRelativeTo(null);
 
         JCheckBox chkRemember = new JCheckBox("Remember me");
 
         chkRemember.setForeground(new Color(242, 242, 242, 80));
-        
-        autoLoginIfRemembered(); 
+
+        autoLoginIfRemembered();
     }
-    
+
     private void autoLoginIfRemembered() {
         String[] data = Security.load();
         if (data != null) {
@@ -36,7 +36,7 @@ this.setUndecorated(true);
             User user = new UserDAOImpl().findByUsername(username);
             if (user != null && password.equals(user.getMat_khau())) {
                 XAuth.user = user;
-                openMainForRole();      
+                openMainForRole();
                 this.dispose();// vào thẳng hệ thống
             }
         }
@@ -55,12 +55,9 @@ this.setUndecorated(true);
         UserDAO dao = new UserDAOImpl();
         User user = dao.findByUsername(username);
 
-        
-
         if (user != null && password.equals(user.getMat_khau())) {
             XAuth.user = user;
 
-            
             if (chkRemember.isSelected()) {
                 Security.save(username, password);
             } else {
@@ -80,11 +77,10 @@ this.setUndecorated(true);
             MainTeacher.main(new String[]{});
         } else {
             XDialog.alert("Đăng nhập thành công (Học viên)");
-             MainStudent.main(new String[]{});
+            MainStudent.main(new String[]{});
         }
         dispose();
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -202,7 +198,7 @@ this.setUndecorated(true);
 
     private void chkRememberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkRememberActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_chkRememberActionPerformed
 
     public static void main(String args[]) {

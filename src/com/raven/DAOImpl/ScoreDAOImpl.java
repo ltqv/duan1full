@@ -7,8 +7,8 @@ import com.raven.util.XQuery;
 import java.util.List;
 
 public class ScoreDAOImpl implements ScoreDAO{
-    String createSql = "INSERT INTO Diem(id, id_bai_lam, diem, nhan_xet, ngay_cham) VALUES(?, ?, ?, ?, ?)"; 
-    String updateSql = "UPDATE Diem SET id_bai_lam=?, diem=?, nhan_xet=?, ngay_cham=? WHERE id=?"; 
+    String createSql = "INSERT INTO Diem(id, id_bai_kiem_tra, diem, nhan_xet, ngay_cham) VALUES(?, ?, ?, ?, ?)"; 
+    String updateSql = "UPDATE Diem SET id_bai_kiem_tra=?, diem=?, nhan_xet=?, ngay_cham=? WHERE id=?"; 
     String deleteSql = "DELETE FROM Diem WHERE id=?"; 
     String findAllSql = "SELECT * FROM Diem"; 
     String findByIdSql = "SELECT * FROM Diem WHERE id=?"; 
@@ -17,7 +17,7 @@ public class ScoreDAOImpl implements ScoreDAO{
     public Score create(Score entity) { 
         Object[] values = { 
             entity.getId(), 
-            entity.getId_bai_lam(),
+            entity.getId_bai_kiem_tra(),
             entity.getDiem(),
             entity.getNhan_xet(),
             entity.getNgay_cham()
@@ -28,7 +28,7 @@ public class ScoreDAOImpl implements ScoreDAO{
     @Override 
     public void update(Score entity) { 
         Object[] values = {  
-            entity.getId_bai_lam(),
+            entity.getId_bai_kiem_tra(),
             entity.getDiem(),
             entity.getNhan_xet(),
             entity.getNgay_cham(),

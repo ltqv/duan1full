@@ -61,28 +61,12 @@ public class Form_khoaHoc extends javax.swing.JPanel implements Form_khoaHocHv{
         });
         tblkhoaHoc.setDefaultEditor(Object.class, null);
 
-        DefaultTableModel model2 = (DefaultTableModel) tblkhoHoc2.getModel();
-        model2.setRowCount(0);
-
-        items = dao.findAll();
-        items.forEach(item -> {
-            Object[] rowData = {
-            item.getId(), 
-            item.getTen_khoa_hoc(),
-            item.getNgay_tao(),
-            };
-            model2.addRow(rowData);
-        });
-        tblkhoHoc2.setDefaultEditor(Object.class, null);
+        
     }
 
     @Override
     public void edit() {
-        Course entity = items.get(tblkhoHoc2.getSelectedRow());
-        this.setForm(entity);
-        this.setEditable(true);
-
-        tabs.setSelectedIndex(1);
+       
     }
 
     @Override
@@ -96,9 +80,7 @@ public class Form_khoaHoc extends javax.swing.JPanel implements Form_khoaHocHv{
     }
 
     private void setCheckedAll(boolean checked) {
-        for (int i = 0; i < tblkhoHoc2.getRowCount(); i++) {
-            tblkhoHoc2.setValueAt(checked, i, 2);
-        }
+        
     }
 
     @Override
@@ -115,32 +97,13 @@ public class Form_khoaHoc extends javax.swing.JPanel implements Form_khoaHocHv{
 
 @Override
 public void setForm(Course entity) {
-   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    txtIDkhoaHoc.setText(entity.getId());
-    txtKhoahoc.setText(entity.getTen_khoa_hoc());
-    txtngayTao.setText(String.valueOf(entity.getNgay_tao()!= null ? sdf.format(entity.getNgay_tao()) : "") );
+  
 }
 
 @Override
 public Course getForm() {
     Course entity = new Course();
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-    try {
-        entity.setId(txtIDkhoaHoc.getText());
-        entity.setTen_khoa_hoc(txtKhoahoc.getText());
-
-        // Sửa chỗ này: dùng sdf.parse thay vì new Date(String)
-        if (!txtngayTao.getText().isEmpty()) {
-            entity.setNgay_tao(new java.sql.Timestamp(sdf.parse(txtngayTao.getText()).getTime()));
-        }
-        return entity; // Đừng return null nếu thành công
-
-    } catch (Exception e) {
-        e.printStackTrace();
-        XDialog.alert("Lỗi nhập liệu: " + e.getMessage());
-        return null;
-    }
+    return entity;
 }
 
     @Override
@@ -160,12 +123,7 @@ public Course getForm() {
 
     @Override
     public void delete() {
-        if (XDialog.confirm("Bạn thực sự muốn xóa?")) {
-            String id = txtIDkhoaHoc.getText();
-            dao.deleteById(id);
-            this.fillToTable();
-            this.clear();
-        }
+       
     }
 
     @Override
@@ -176,12 +134,7 @@ public Course getForm() {
 
     @Override
     public void setEditable(boolean editable) {
-        txtIDkhoaHoc.setEnabled(!editable);
-        btnthem.setEnabled(!editable);
-        btncapNhat.setEnabled(editable);
-        btnxoa.setEnabled(editable);
-
-        int rowCount = tblkhoaHoc.getRowCount();
+       
 
     }
     @Override
@@ -230,19 +183,6 @@ public Course getForm() {
         jPanel8 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tblkhoaHoc = new javax.swing.JTable();
-        jPanel6 = new javax.swing.JPanel();
-        txtIDHocphi = new javax.swing.JLabel();
-        txtIDkhoaHoc = new javax.swing.JTextField();
-        txtIDHocSinh = new javax.swing.JLabel();
-        txtKhoahoc = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        txtngayTao = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblkhoHoc2 = new javax.swing.JTable();
-        btnthem = new javax.swing.JButton();
-        btnxoa = new javax.swing.JButton();
-        btncapNhat = new javax.swing.JButton();
-        btnlamMoi = new javax.swing.JButton();
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -283,125 +223,6 @@ public Course getForm() {
         );
 
         tabs.addTab("Tổng quát", jPanel8);
-
-        txtIDHocphi.setText("ID khóa học");
-
-        txtIDHocSinh.setText("Khóa học");
-
-        jLabel3.setText("Ngày tạo");
-
-        tblkhoHoc2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "ID Khóa học ", "Khóa học", "Ngày tạo"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        tblkhoHoc2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblkhoHoc2MouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tblkhoHoc2);
-
-        btnthem.setText("Thêm");
-        btnthem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnthemActionPerformed(evt);
-            }
-        });
-
-        btnxoa.setText("Xóa");
-        btnxoa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnxoaActionPerformed(evt);
-            }
-        });
-
-        btncapNhat.setText("Cập nhật");
-        btncapNhat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btncapNhatActionPerformed(evt);
-            }
-        });
-
-        btnlamMoi.setText("Làm mới");
-        btnlamMoi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnlamMoiActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(btnthem)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnxoa)
-                                .addGap(18, 18, 18)
-                                .addComponent(btncapNhat)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnlamMoi)
-                                .addGap(0, 677, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(txtIDHocphi)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtIDkhoaHoc, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)
-                        .addComponent(txtIDHocSinh)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtKhoahoc, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtngayTao, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtIDHocphi)
-                    .addComponent(txtIDkhoaHoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtIDHocSinh)
-                    .addComponent(txtKhoahoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtngayTao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnthem)
-                    .addComponent(btnxoa)
-                    .addComponent(btncapNhat)
-                    .addComponent(btnlamMoi))
-                .addContainerGap())
-        );
-
-        tabs.addTab("Chỉnh sửa", jPanel6);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -480,52 +301,14 @@ public Course getForm() {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tblkhoHoc2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblkhoHoc2MouseClicked
-        // TODO add your handling code here:
-            if (evt.getClickCount() == 2) {
-            this.edit();
-        }
-    }//GEN-LAST:event_tblkhoHoc2MouseClicked
-
-    private void btnthemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthemActionPerformed
-        // TODO add your handling code here:
-        this.create();
-    }//GEN-LAST:event_btnthemActionPerformed
-
-    private void btnxoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnxoaActionPerformed
-        // TODO add your handling code here:
-        this.delete();
-    }//GEN-LAST:event_btnxoaActionPerformed
-
-    private void btncapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncapNhatActionPerformed
-      this.update();
-    }//GEN-LAST:event_btncapNhatActionPerformed
-
-    private void btnlamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlamMoiActionPerformed
-        this.clear();
-    }//GEN-LAST:event_btnlamMoiActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btncapNhat;
-    private javax.swing.JButton btnlamMoi;
-    private javax.swing.JButton btnthem;
-    private javax.swing.JButton btnxoa;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane tabs;
-    private javax.swing.JTable tblkhoHoc2;
     private javax.swing.JTable tblkhoaHoc;
-    private javax.swing.JLabel txtIDHocSinh;
-    private javax.swing.JLabel txtIDHocphi;
-    private javax.swing.JTextField txtIDkhoaHoc;
-    private javax.swing.JTextField txtKhoahoc;
-    private javax.swing.JTextField txtngayTao;
     // End of variables declaration//GEN-END:variables
 }

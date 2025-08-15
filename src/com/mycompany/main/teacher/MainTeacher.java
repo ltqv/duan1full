@@ -1,19 +1,14 @@
 package com.mycompany.main.teacher;
 
 import com.mycompany.event.teacher.EventMenuSelected;
-<<<<<<< HEAD
-=======
 import com.mycompany.form.teacher.Form_Logout;
->>>>>>> a13e521 (up lại)
 import com.mycompany.form.teacher.Form_Diem;
+import com.mycompany.form.teacher.Form_lsHocTap;
 import com.mycompany.form.teacher.Form_Home;
-
 import com.mycompany.form.teacher.Form_qlBaiKiemTra;
 import com.mycompany.form.teacher.Form_qlHocSinh;
 import com.mycompany.form.teacher.Form_qlLichHoc;
 import com.mycompany.form.teacher.Form_qlLopHoc;
-
-import com.mycompany.swing.teacher.ScrollBar;
 import java.awt.Color;
 import javax.swing.JComponent;
 
@@ -29,27 +24,25 @@ public class MainTeacher extends javax.swing.JFrame {
                 if (index == 0) {
                     setForm(new Form_Home());
                 } else if (index == 1) {
-                 setForm(new Form_qlLopHoc());
+                    setForm(new Form_qlLopHoc());
                 } else if (index == 2) {
-                     setForm(new Form_qlLichHoc());
+                    setForm(new Form_qlLichHoc());
                 } else if (index == 3) {
-                   setForm(new Form_qlHocSinh());
+                    setForm(new Form_qlHocSinh());
                 } else if (index == 4) {
-                      setForm(new Form_qlBaiKiemTra());
+                    setForm(new Form_qlBaiKiemTra());
                 } else if (index == 5) {
                     setForm(new Form_Diem());
                 } else if (index == 6) {
-<<<<<<< HEAD
-             
-=======
-               setForm(new Form_Logout());
->>>>>>> a13e521 (up lại)
-                }
+                    setForm(new Form_lsHocTap());
+                } else if (index == 7) {
+                    setForm(new Form_Logout());
+                } 
             }
         });
         setForm(new Form_Home());
     }
-    
+
     private void setForm(JComponent com) {
         mainPanel.removeAll();
         mainPanel.add(com);
@@ -113,7 +106,7 @@ public class MainTeacher extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public static void main(String args[]) {
-       
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainTeacher().setVisible(true);

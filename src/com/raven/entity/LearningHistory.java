@@ -65,7 +65,7 @@ public class LearningHistory {
         this.ngay_hoc_thuc_te = ngay_hoc_thuc_te;
     }
 
-    public boolean getCo_mat() {
+    public boolean isCo_mat() {
         return co_mat;
     }
 

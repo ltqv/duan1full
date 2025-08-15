@@ -1,4 +1,3 @@
-
 package com.raven.main;
 
 import com.raven.event.EventMenuSelected;
@@ -6,25 +5,23 @@ import com.raven.form.Form_1;
 import com.raven.form.Form_2;
 import com.raven.form.Form_3;
 import com.raven.form.Form_4;
-
+import com.raven.form.Form_hocPhi;
+import com.raven.form.Form_khoaHoc;
 import com.raven.form.Form_Home;
-<<<<<<< HEAD
-=======
+
 import com.raven.form.Form_Logout;
->>>>>>> a13e521 (up lại)
 import java.awt.Color;
 import javax.swing.JComponent;
 
-
 public class Main extends javax.swing.JFrame {
 
-   
     private Form_Home home;
     private Form_1 form1;
     private Form_2 form2;
     private Form_3 form3;
     private Form_4 form4;
-    
+    private Form_hocPhi formhocPhi;
+    private Form_khoaHoc formkhoaHoc;
 
     public Main() {
         initComponents();
@@ -34,6 +31,8 @@ public class Main extends javax.swing.JFrame {
         form2 = new Form_2();
         form3 = new Form_3();
         form4 = new Form_4();
+        formkhoaHoc = new Form_khoaHoc();
+        formhocPhi = new Form_hocPhi();
         menu.initMoving(Main.this);
         menu.addEventMenuSelected(new EventMenuSelected() {
             @Override
@@ -46,19 +45,18 @@ public class Main extends javax.swing.JFrame {
                     setForm(form2);
                 } else if (index == 3) {
                     setForm(form3);
-                } else if (index ==4){
-                setForm(form4);
-<<<<<<< HEAD
-                } 
-=======
-                } else if (index == 5){
+                } else if (index == 4) {
+                    setForm(formkhoaHoc);
+                } else if (index == 5) {
+                    setForm(formhocPhi);
+                } else if (index == 6) {
+                    setForm(form4);
+                } else if (index == 7) {
                     setForm(new Form_Logout());
                 }
->>>>>>> a13e521 (up lại)
             }
+
         });
-       
-        setForm(new Form_Home());
     }
 
     private void setForm(JComponent com) {
@@ -68,7 +66,6 @@ public class Main extends javax.swing.JFrame {
         mainPanel.revalidate();
     }
 
- 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -127,9 +124,8 @@ public class Main extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-   
     public static void main(String args[]) {
-    
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Main().setVisible(true);

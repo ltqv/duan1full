@@ -49,7 +49,7 @@ public class Form_Diem extends javax.swing.JPanel implements com.raven.Controlle
         items.forEach(item -> {
             Object[] rowData = {
                 item.getId(),
-                item.getId_bai_lam(),
+                item.getId_bai_kiem_tra(),
                 item.getDiem(),
                 item.getNhan_xet(),
                 item.getNgay_cham()
@@ -65,7 +65,7 @@ public class Form_Diem extends javax.swing.JPanel implements com.raven.Controlle
         items.forEach(item -> {
             Object[] rowData = {
                 item.getId(),
-                item.getId_bai_lam(),
+                item.getId_bai_kiem_tra(),
                 item.getDiem(),
                 item.getNhan_xet(),
                 item.getNgay_cham()
@@ -114,7 +114,7 @@ public class Form_Diem extends javax.swing.JPanel implements com.raven.Controlle
     @Override
     public void setForm(Score entity) {
         txtID.setText(entity.getId());
-        txtIDBaiLam.setText(entity.getId_bai_lam());
+        txtIDBaikiemtra.setText(entity.getId_bai_kiem_tra());
         txtDiem.setText(String.valueOf(entity.getDiem()));
         txtanhanXet.setText(entity.getNhan_xet());
         txtngayCham.setText(String.valueOf(entity.getNgay_cham()));
@@ -124,7 +124,7 @@ public class Form_Diem extends javax.swing.JPanel implements com.raven.Controlle
     public Score getForm() {
         Score entity = new Score();
         entity.setId(txtID.getText());
-        entity.setId_bai_lam(txtIDBaiLam.getText());
+        entity.setId_bai_kiem_tra(txtIDBaikiemtra.getText());
         entity.setDiem(Double.parseDouble(txtDiem.getText()));
         entity.setNhan_xet(txtanhanXet.getText());
 
@@ -243,7 +243,7 @@ public class Form_Diem extends javax.swing.JPanel implements com.raven.Controlle
         btnlamMoi = new javax.swing.JButton();
         txtIDHocphi1 = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
-        txtIDBaiLam = new javax.swing.JTextField();
+        txtIDBaikiemtra = new javax.swing.JTextField();
         txtDiem = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtanhanXet = new javax.swing.JTextArea();
@@ -258,7 +258,7 @@ public class Form_Diem extends javax.swing.JPanel implements com.raven.Controlle
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID", "ID Bài làm", "Điểm", "Nhận xét", "Ngày chấm"
+                "ID", "ID Bài kiểm tra", "Điểm", "Nhận xét", "Ngày chấm"
             }
         ) {
             Class[] types = new Class [] {
@@ -290,7 +290,7 @@ public class Form_Diem extends javax.swing.JPanel implements com.raven.Controlle
 
         txtIDHocphi.setText("ID");
 
-        txtIDHocSinh.setText("ID Bài làm");
+        txtIDHocSinh.setText("ID Bài kiểm tra");
 
         jLabel3.setText("Điểm");
 
@@ -304,7 +304,7 @@ public class Form_Diem extends javax.swing.JPanel implements com.raven.Controlle
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID", "ID Bài làm", "Điểm", "Nhận xét", "Ngày chấm"
+                "ID", "ID Bài kiểm tra", "Điểm", "Nhận xét", "Ngày chấm"
             }
         ) {
             Class[] types = new Class [] {
@@ -384,7 +384,7 @@ public class Form_Diem extends javax.swing.JPanel implements com.raven.Controlle
                                 .addGap(45, 45, 45)
                                 .addComponent(txtIDHocSinh)
                                 .addGap(27, 27, 27)
-                                .addComponent(txtIDBaiLam, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtIDBaikiemtra, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel3)
                                 .addGap(36, 36, 36)
@@ -394,8 +394,7 @@ public class Form_Diem extends javax.swing.JPanel implements com.raven.Controlle
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(txtIDHocphi1)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtngayCham, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(txtngayCham, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36))))
@@ -412,7 +411,7 @@ public class Form_Diem extends javax.swing.JPanel implements com.raven.Controlle
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
                             .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtIDBaiLam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtIDBaikiemtra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtDiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(42, 42, 42)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -518,7 +517,7 @@ public class Form_Diem extends javax.swing.JPanel implements com.raven.Controlle
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 430, Short.MAX_VALUE)
+            .addGap(0, 442, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -596,7 +595,7 @@ public class Form_Diem extends javax.swing.JPanel implements com.raven.Controlle
     private javax.swing.JTable tbldiem2;
     private javax.swing.JTextField txtDiem;
     private javax.swing.JTextField txtID;
-    private javax.swing.JTextField txtIDBaiLam;
+    private javax.swing.JTextField txtIDBaikiemtra;
     private javax.swing.JLabel txtIDHocSinh;
     private javax.swing.JLabel txtIDHocphi;
     private javax.swing.JLabel txtIDHocphi1;

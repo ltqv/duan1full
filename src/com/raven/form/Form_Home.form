@@ -146,7 +146,7 @@
                     <Column editable="false" title="Email" type="java.lang.Object"/>
                     <Column editable="false" title="S&#x1ed1; &#x111;i&#x1ec7;n tho&#x1ea1;i" type="java.lang.Object"/>
                     <Column editable="false" title="Vai tr&#xf2;" type="java.lang.Object"/>
-                    <Column editable="true" title="Ng&#xe0;y t&#x1ea1;o" type="java.lang.Object"/>
+                    <Column editable="false" title="Ng&#xe0;y t&#x1ea1;o" type="java.lang.Object"/>
                     <Column editable="false" title="Status" type="java.lang.Object"/>
                   </Table>
                 </Property>

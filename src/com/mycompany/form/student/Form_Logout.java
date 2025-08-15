@@ -1,7 +1,7 @@
 
 package com.mycompany.form.student;
 
-import com.mycompany.form.teacher.*;
+
 
 
 public class Form_Logout extends javax.swing.JPanel {

@@ -5,7 +5,6 @@ import com.raven.DAOImpl.ExamDAOImpl;
 import com.raven.entity.Exam;
 import com.raven.util.XDialog;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
@@ -126,7 +125,11 @@ public class Form_qlBaiKiemTra extends javax.swing.JPanel implements com.raven.C
         txttongcau.setText(String.valueOf(entity.getTong_so_cau()));
         txttgbd.setText(String.valueOf(entity.getThoi_gian_bat_dau()));
         txttgkt.setText(String.valueOf(entity.getThoi_gian_ket_thuc()));
-
+        if (entity.isKich_hoat() == true) {
+            chkkichhoat.setSelected(true);
+        } else {
+            chkkichhoat.setSelected(false);
+        }
     }
 
     @Override
@@ -136,21 +139,31 @@ public class Form_qlBaiKiemTra extends javax.swing.JPanel implements com.raven.C
         entity.setTieu_de(txttieude.getText());
         entity.setThoi_luong(Integer.parseInt(txtthoiluong.getText()));
         entity.setTong_so_cau(Integer.parseInt(txttongcau.getText()));
+        if (chkkichhoat.isSelected()) {
+            entity.setKich_hoat(true);
+        } else {
+            entity.setKich_hoat(false);
+        }
 
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            // Chỉ định dạng giờ và phút
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+            sdf.setLenient(false); // Không cho nhập sai định dạng
 
-            java.util.Date utilNgayTao = sdf.parse(txtngaytao.getText());
+            // Lấy thời gian hiện tại cho ngày tạo
+            java.util.Date utilNgayTao = new java.util.Date();
+            entity.setNgay_tao(new java.sql.Timestamp(utilNgayTao.getTime()));
+
+            // Parse giờ và phút
             java.util.Date utilTGBD = sdf.parse(txttgbd.getText());
             java.util.Date utilTGKT = sdf.parse(txttgkt.getText());
 
-            // Nếu cột trong DB là DATETIME
-            entity.setNgay_tao(new java.sql.Timestamp(utilNgayTao.getTime()));
-            entity.setThoi_gian_bat_dau(new java.sql.Timestamp(utilTGBD.getTime()));
-            entity.setThoi_gian_ket_thuc(new java.sql.Timestamp(utilTGKT.getTime()));
+            // Chuyển sang java.sql.Time (chỉ lưu giờ và phút)
+            entity.setThoi_gian_bat_dau(new java.sql.Time(utilTGBD.getTime()));
+            entity.setThoi_gian_ket_thuc(new java.sql.Time(utilTGKT.getTime()));
 
         } catch (Exception e) {
-            throw new RuntimeException("Lỗi định dạng ngày/giờ, vui lòng nhập theo yyyy-MM-dd HH:mm", e);
+            throw new RuntimeException("Lỗi định dạng ngày/giờ, vui lòng nhập theo HH:mm", e);
         }
 
         return entity;
@@ -252,7 +265,6 @@ public class Form_qlBaiKiemTra extends javax.swing.JPanel implements com.raven.C
         jLabel3 = new javax.swing.JLabel();
         txttgkt = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtkichhoat = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblbaiKiemTra2 = new javax.swing.JTable();
         btnthem = new javax.swing.JButton();
@@ -267,6 +279,7 @@ public class Form_qlBaiKiemTra extends javax.swing.JPanel implements com.raven.C
         txtngaytao = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtthoiluong = new javax.swing.JTextField();
+        chkkichhoat = new javax.swing.JCheckBox();
 
         jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -429,9 +442,9 @@ public class Form_qlBaiKiemTra extends javax.swing.JPanel implements com.raven.C
                                 .addComponent(txttgkt, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(26, 26, 26)
                                 .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtkichhoat, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(10, Short.MAX_VALUE))
+                                .addGap(27, 27, 27)
+                                .addComponent(chkkichhoat)))))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -446,7 +459,7 @@ public class Form_qlBaiKiemTra extends javax.swing.JPanel implements com.raven.C
                     .addComponent(txtngaytao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
                     .addComponent(txtthoiluong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
+                .addGap(40, 40, 40)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtIDHocphi1)
                     .addComponent(txttongcau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -455,10 +468,10 @@ public class Form_qlBaiKiemTra extends javax.swing.JPanel implements com.raven.C
                     .addComponent(jLabel5)
                     .addComponent(txttgkt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(txtkichhoat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(chkkichhoat))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnthem)
                     .addComponent(btnxoa)
@@ -618,6 +631,7 @@ public class Form_qlBaiKiemTra extends javax.swing.JPanel implements com.raven.C
     private javax.swing.JButton btnlamMoi;
     private javax.swing.JButton btnthem;
     private javax.swing.JButton btnxoa;
+    private javax.swing.JCheckBox chkkichhoat;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -639,7 +653,6 @@ public class Form_qlBaiKiemTra extends javax.swing.JPanel implements com.raven.C
     private javax.swing.JLabel txtIDHocSinh1;
     private javax.swing.JLabel txtIDHocphi;
     private javax.swing.JLabel txtIDHocphi1;
-    private javax.swing.JTextField txtkichhoat;
     private javax.swing.JTextField txtngaytao;
     private javax.swing.JTextField txttgbd;
     private javax.swing.JTextField txttgkt;

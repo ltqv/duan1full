@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Score {
     private String id;
-    private String id_bai_lam;
+    private String id_bai_kiem_tra;
     private double diem;
     private String nhan_xet;
     private Date ngay_cham;
@@ -12,9 +12,9 @@ public class Score {
     public Score() {
     }
 
-    public Score(String id, String id_bai_lam, double diem, String nhan_xet, Date ngay_cham) {
+    public Score(String id, String id_bai_kiem_tra, double diem, String nhan_xet, Date ngay_cham) {
         this.id = id;
-        this.id_bai_lam = id_bai_lam;
+        this.id_bai_kiem_tra = id_bai_kiem_tra;
         this.diem = diem;
         this.nhan_xet = nhan_xet;
         this.ngay_cham = ngay_cham;
@@ -28,12 +28,12 @@ public class Score {
         this.id = id;
     }
 
-    public String getId_bai_lam() {
-        return id_bai_lam;
+    public String getId_bai_kiem_tra() {
+        return id_bai_kiem_tra;
     }
 
-    public void setId_bai_lam(String id_bai_lam) {
-        this.id_bai_lam = id_bai_lam;
+    public void setId_bai_kiem_tra(String id_bai_kiem_tra) {
+        this.id_bai_kiem_tra = id_bai_kiem_tra;
     }
 
     public double getDiem() {
