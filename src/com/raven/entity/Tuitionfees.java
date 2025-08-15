@@ -13,13 +13,13 @@ public class Tuitionfees {
     private BigDecimal tong_hoc_phi;
     private BigDecimal da_dong;
     private BigDecimal con_lai;
-    private String trang_thai; // 'DA_DONG' hoặc 'CON_NO'
+    private boolean trang_thai; // 'DA_DONG' hoặc 'CON_NO'
     private Date ngay_dong_cuoi;
 
     public Tuitionfees() {
     }
 
-    public Tuitionfees(int id_hoc_phi, String id_hoc_vien, String hoc_ky, String nam_hoc, BigDecimal tong_hoc_phi, BigDecimal da_dong, BigDecimal con_lai, String trang_thai, Date ngay_dong_cuoi) {
+    public Tuitionfees(int id_hoc_phi, String id_hoc_vien, String hoc_ky, String nam_hoc, BigDecimal tong_hoc_phi, BigDecimal da_dong, BigDecimal con_lai, boolean trang_thai, Date ngay_dong_cuoi) {
         this.id_hoc_phi = id_hoc_phi;
         this.id_hoc_vien = id_hoc_vien;
         this.hoc_ky = hoc_ky;
@@ -87,11 +87,11 @@ public class Tuitionfees {
         this.con_lai = con_lai;
     }
 
-    public String getTrang_thai() {
+    public boolean isTrang_thai() {
         return trang_thai;
     }
 
-    public void setTrang_thai(String trang_thai) {
+    public void setTrang_thai(boolean trang_thai) {
         this.trang_thai = trang_thai;
     }
 

@@ -123,7 +123,7 @@ CREATE TABLE HocPhi (
     tong_hoc_phi DECIMAL(18, 2) NOT NULL,
     da_dong DECIMAL(18, 2) NOT NULL DEFAULT 0,
     con_lai AS (tong_hoc_phi - da_dong) PERSISTED,
-    trang_thai NVARCHAR(20) CHECK (trang_thai IN ('DA_DONG', 'CON_NO')),
+    trang_thai BIT,
     ngay_dong_cuoi DATE,
     FOREIGN KEY (id_hoc_vien) REFERENCES NguoiDung(id)
 );
@@ -202,7 +202,7 @@ VALUES
 
 INSERT INTO HocPhi (id_hoc_vien, hoc_ky, nam_hoc, tong_hoc_phi, da_dong, trang_thai, ngay_dong_cuoi)
 VALUES
-('HV002', 'HK1', '2025', 4500000, 4500000, 'DA_DONG', '2025-07-25');
+('HV002', 'HK1', '2025', 4500000, 4500000, 1, '2025-07-25');
 
 
 

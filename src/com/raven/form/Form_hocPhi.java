@@ -1,4 +1,3 @@
-
 package com.raven.form;
 
 import com.raven.Controller.Form_hocPhiHv;
@@ -7,21 +6,16 @@ import com.raven.DAOImpl.TuitionfeesDAOImpl;
 import com.raven.entity.Tuitionfees;
 import com.raven.util.XDialog;
 import java.math.BigDecimal;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import javax.swing.JOptionPane;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.table.DefaultTableModel;
 
+public class Form_hocPhi extends javax.swing.JPanel implements Form_hocPhiHv {
 
-public class Form_hocPhi extends javax.swing.JPanel implements Form_hocPhiHv{
-
-       TuitionfeesDAO dao = new TuitionfeesDAOImpl();
-        List<Tuitionfees> items = List.of();
-
+    TuitionfeesDAO dao = new TuitionfeesDAOImpl();
+    List<Tuitionfees> items = List.of();
 
     public Form_hocPhi() {
         initComponents();
@@ -39,7 +33,7 @@ public class Form_hocPhi extends javax.swing.JPanel implements Form_hocPhiHv{
             public void ancestorMoved(AncestorEvent event) {
             }
         });
-        
+
     }
 
     @Override
@@ -56,15 +50,14 @@ public class Form_hocPhi extends javax.swing.JPanel implements Form_hocPhiHv{
         items = dao.findAll();
         items.forEach(item -> {
             Object[] rowData = {
-            item.getId_hoc_phi(), 
-            item.getId_hoc_vien(),
-            item.getHoc_ky(),
-            item.getNam_hoc(),
-            item.getTong_hoc_phi(),
-            item.getDa_dong(),
-            item.getCon_lai(),
-            item.getTrang_thai(),
-            item.getNgay_dong_cuoi()
+                item.getId_hoc_vien(),
+                item.getHoc_ky(),
+                item.getNam_hoc(),
+                item.getTong_hoc_phi(),
+                item.getDa_dong(),
+                item.getCon_lai(),
+                item.isTrang_thai() ? "Đã đóng" : "Chưa đóng",
+                item.getNgay_dong_cuoi()
             };
             model1.addRow(rowData);
         });
@@ -76,12 +69,11 @@ public class Form_hocPhi extends javax.swing.JPanel implements Form_hocPhiHv{
         items = dao.findAll();
         items.forEach(item -> {
             Object[] rowData = {
-            item.getId_hoc_phi(), 
-            item.getId_hoc_vien(),
-            item.getHoc_ky(),
-            item.getTong_hoc_phi(),
-            item.getTrang_thai(),
-            item.getNgay_dong_cuoi()
+                item.getId_hoc_vien(),
+                item.getHoc_ky(),
+                item.getTong_hoc_phi(),
+                item.isTrang_thai() ? "Đã đóng" : "Chưa đóng",
+                item.getNgay_dong_cuoi()
             };
             model2.addRow(rowData);
         });
@@ -125,85 +117,80 @@ public class Form_hocPhi extends javax.swing.JPanel implements Form_hocPhiHv{
         }
     }
 
-@Override
-public void setForm(Tuitionfees entity) {
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    @Override
+    public void setForm(Tuitionfees entity) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-    txtIIDHocPhi.setText(String.valueOf(entity.getId_hoc_phi()));
-    txtIDHocSinhHP.setText(entity.getId_hoc_vien());
-    txtHocKy.setText(entity.getHoc_ky());
-    txtNamHoc.setText(entity.getNam_hoc());
+        txtIIDHocPhi.setText(String.valueOf(entity.getId_hoc_phi()));
+        txtIDHocSinhHP.setText(entity.getId_hoc_vien());
+        txtHocKy.setText(entity.getHoc_ky());
+        txtNamHoc.setText(entity.getNam_hoc());
 
-    txtTongHocPhi.setText(entity.getTong_hoc_phi() != null ? entity.getTong_hoc_phi().toString() : "");
+        txtTongHocPhi.setText(entity.getTong_hoc_phi() != null ? entity.getTong_hoc_phi().toString() : "");
 
-    // Chọn trạng thái trên combobox
-    if (entity.getTrang_thai() != null) {
-        cbotrangThai.setSelectedItem(entity.getTrang_thai());
-    } else {
-        cbotrangThai.setSelectedIndex(-1); // Không chọn gì
-    }
-
-    if (entity.getNgay_dong_cuoi() != null) {
-        txtNgayDongCuoi.setText(sdf.format(entity.getNgay_dong_cuoi()));
-    } else {
-        txtNgayDongCuoi.setText("");
-    }
-}
-
-@Override
-public Tuitionfees getForm() {
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    Tuitionfees entity = new Tuitionfees();
-
-    // ID học phí
-    if (!txtIIDHocPhi.getText().trim().isEmpty()) {
-        entity.setId_hoc_phi(Integer.parseInt(txtIIDHocPhi.getText().trim()));
-    }
-
-    entity.setId_hoc_vien(txtIDHocSinhHP.getText().trim());
-    entity.setHoc_ky(txtHocKy.getText().trim());
-    entity.setNam_hoc(txtNamHoc.getText().trim());
-
-    BigDecimal tongHocPhi = parseBigDecimalOrZero(txtTongHocPhi.getText().trim());
-    entity.setTong_hoc_phi(tongHocPhi);
-
-    // Xác định trạng thái
-    String trangThai = cbotrangThai.getSelectedItem().toString().trim();
-    if ("DADONG".equalsIgnoreCase(trangThai)) {
-        entity.setTrang_thai("DA_DONG");
-        entity.setDa_dong(tongHocPhi);           // Trả đủ
-    } else {
-        entity.setTrang_thai("CON_NO");
-        entity.setDa_dong(BigDecimal.ZERO);      // Chưa đóng gì
-    }
-
-    // Tính còn lại
-    entity.setCon_lai(tongHocPhi.subtract(entity.getDa_dong()));
-
-    // Ngày đóng cuối
-    try {
-        if (!txtNgayDongCuoi.getText().trim().isEmpty()) {
-            entity.setNgay_dong_cuoi(sdf.parse(txtNgayDongCuoi.getText().trim()));
+        // Chọn trạng thái trên combobox
+        if (entity.isTrang_thai() == true) {
+            cbotrangThai.setSelectedItem("DADONG");
+        } else {
+            cbotrangThai.setSelectedItem("CHUADONG"); // Không chọn gì
         }
-    } catch (Exception e) {
-        e.printStackTrace();
-        entity.setNgay_dong_cuoi(null);
+
+        if (entity.getNgay_dong_cuoi() != null) {
+            txtNgayDongCuoi.setText(sdf.format(entity.getNgay_dong_cuoi()));
+        } else {
+            txtNgayDongCuoi.setText("");
+        }
     }
 
-    return entity;
-}
+    @Override
+    public Tuitionfees getForm() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Tuitionfees entity = new Tuitionfees();
+        
+        entity.setId_hoc_phi(Integer.parseInt(txtIIDHocPhi.getText()));
+        entity.setId_hoc_vien(txtIDHocSinhHP.getText().trim());
+        entity.setHoc_ky(txtHocKy.getText().trim());
+        entity.setNam_hoc(txtNamHoc.getText().trim());
 
-private BigDecimal parseBigDecimalOrZero(String value) {
-    if (value == null || value.isEmpty()) {
-        return BigDecimal.ZERO;
-    }
-    try {
-        return new BigDecimal(value);
-    } catch (NumberFormatException e) {
-        return BigDecimal.ZERO;
-    }
-}
+        BigDecimal tongHocPhi = parseBigDecimalOrZero(txtTongHocPhi.getText().trim());
+        entity.setTong_hoc_phi(tongHocPhi);
 
+        // Xác định trạng thái
+        String trangThai = cbotrangThai.getSelectedItem().toString().trim();
+        if ("DADONG".equalsIgnoreCase(trangThai)) {
+            entity.setTrang_thai(true);
+            entity.setDa_dong(tongHocPhi);           // Trả đủ
+        } else {
+            entity.setTrang_thai(false);
+            entity.setDa_dong(BigDecimal.ZERO);      // Chưa đóng gì
+        }
+
+        // Tính còn lại
+        entity.setCon_lai(tongHocPhi.subtract(entity.getDa_dong()));
+
+        // Ngày đóng cuối
+        try {
+            if (!txtNgayDongCuoi.getText().trim().isEmpty()) {
+                entity.setNgay_dong_cuoi(sdf.parse(txtNgayDongCuoi.getText().trim()));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            entity.setNgay_dong_cuoi(null);
+        }
+
+        return entity;
+    }
+
+    private BigDecimal parseBigDecimalOrZero(String value) {
+        if (value == null || value.isEmpty()) {
+            return BigDecimal.ZERO;
+        }
+        try {
+            return new BigDecimal(value);
+        } catch (NumberFormatException e) {
+            return BigDecimal.ZERO;
+        }
+    }
 
     @Override
     public void create() {
@@ -246,6 +233,7 @@ private BigDecimal parseBigDecimalOrZero(String value) {
         int rowCount = tblHocphi.getRowCount();
 
     }
+
     @Override
     public void moveFirst() {
         this.moveTo(0);
@@ -279,7 +267,6 @@ private BigDecimal parseBigDecimalOrZero(String value) {
         }
     }
 
- 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -340,7 +327,7 @@ private BigDecimal parseBigDecimalOrZero(String value) {
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1034, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 922, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -368,21 +355,28 @@ private BigDecimal parseBigDecimalOrZero(String value) {
 
         tblHocPhi2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID học phí", "ID học sinh", "Học kỳ", "Tổng học phí", "Trạng thái", "Ngày đóng cuối"
+                "ID học sinh", "Học kỳ", "Tổng học phí", "Trạng thái", "Ngày đóng cuối"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         tblHocPhi2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -433,8 +427,8 @@ private BigDecimal parseBigDecimalOrZero(String value) {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtIDHocphi)
                             .addComponent(jLabel6))
@@ -442,9 +436,17 @@ private BigDecimal parseBigDecimalOrZero(String value) {
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtTongHocPhi)
                             .addComponent(txtIIDHocPhi, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(44, 44, 44)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGap(44, 44, 44)
+                                .addComponent(jLabel7)
+                                .addGap(18, 18, 18)
+                                .addComponent(cbotrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(35, 35, 35)
+                                .addComponent(jLabel8)
+                                .addGap(28, 28, 28)
+                                .addComponent(txtNgayDongCuoi, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(txtIDHocSinh)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtIDHocSinhHP, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -455,16 +457,7 @@ private BigDecimal parseBigDecimalOrZero(String value) {
                                 .addGap(43, 43, 43)
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtNamHoc, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGap(74, 74, 74)
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(cbotrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(35, 35, 35)
-                                .addComponent(jLabel8)
-                                .addGap(28, 28, 28)
-                                .addComponent(txtNgayDongCuoi, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txtNamHoc, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(btnthem)
                         .addGap(18, 18, 18)
@@ -473,8 +466,8 @@ private BigDecimal parseBigDecimalOrZero(String value) {
                         .addComponent(btncapNhat)
                         .addGap(18, 18, 18)
                         .addComponent(btnlamMoi))
-                    .addComponent(jScrollPane1))
-                .addContainerGap(85, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 896, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -499,7 +492,7 @@ private BigDecimal parseBigDecimalOrZero(String value) {
                     .addComponent(cbotrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnthem)
                     .addComponent(btnxoa)
@@ -568,7 +561,7 @@ private BigDecimal parseBigDecimalOrZero(String value) {
 
     private void tblHocPhi2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHocPhi2MouseClicked
         // TODO add your handling code here:
-                if (evt.getClickCount() == 2) {
+        if (evt.getClickCount() == 2) {
             this.edit();
         }
     }//GEN-LAST:event_tblHocPhi2MouseClicked

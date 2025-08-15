@@ -6,12 +6,7 @@ import com.raven.DAO.TuitionfeesDAO;
 import com.raven.DAOImpl.TuitionfeesDAOImpl;
 import com.raven.entity.Tuitionfees;
 import com.raven.util.XDialog;
-import java.math.BigDecimal;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import javax.swing.JOptionPane;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.table.DefaultTableModel;
@@ -63,7 +58,7 @@ public class Form_hocPhi extends javax.swing.JPanel implements Form_hocPhiHv{
             item.getTong_hoc_phi(),
             item.getDa_dong(),
             item.getCon_lai(),
-            item.getTrang_thai(),
+            item.isTrang_thai()? "Đã đóng":"Chưa đóng",
             item.getNgay_dong_cuoi()
             };
             model1.addRow(rowData);

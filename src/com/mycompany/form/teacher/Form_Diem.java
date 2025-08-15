@@ -5,7 +5,6 @@ import com.raven.DAOImpl.ScoreDAOImpl;
 import com.raven.entity.Score;
 import com.raven.util.XDialog;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
@@ -130,11 +129,10 @@ public class Form_Diem extends javax.swing.JPanel implements com.raven.Controlle
 
         try {
             // Định dạng ngày bạn nhập vào, ví dụ: 2025-08-15
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            java.util.Date utilDate = sdf.parse(txtngayCham.getText());
+            java.util.Date utilNgayTao = new java.util.Date();
+            entity.setNgay_cham(new java.sql.Timestamp(utilNgayTao.getTime()));
 
             // Nếu trong database cột là DATE hoặc DATETIME → dùng java.sql.Date
-            entity.setNgay_cham(new java.sql.Date(utilDate.getTime()));
         } catch (Exception e) {
             throw new RuntimeException("Ngày chấm không hợp lệ: " + txtngayCham.getText(), e);
         }

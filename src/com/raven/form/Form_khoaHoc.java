@@ -1,4 +1,3 @@
-
 package com.raven.form;
 
 import com.raven.Controller.Form_khoaHocHv;
@@ -7,18 +6,16 @@ import com.raven.DAOImpl.CourseDAOImpl;
 import com.raven.entity.Course;
 import com.raven.util.XDialog;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.table.DefaultTableModel;
 
+public class Form_khoaHoc extends javax.swing.JPanel implements Form_khoaHocHv {
 
-public class Form_khoaHoc extends javax.swing.JPanel implements Form_khoaHocHv{
-    
-     CourseDAO dao = new CourseDAOImpl();
+    CourseDAO dao = new CourseDAOImpl();
     List<Course> items = List.of();
-
-
 
     public Form_khoaHoc() {
         initComponents();
@@ -36,7 +33,7 @@ public class Form_khoaHoc extends javax.swing.JPanel implements Form_khoaHocHv{
             public void ancestorMoved(AncestorEvent event) {
             }
         });
-        
+
     }
 
     @Override
@@ -53,10 +50,9 @@ public class Form_khoaHoc extends javax.swing.JPanel implements Form_khoaHocHv{
         items = dao.findAll();
         items.forEach(item -> {
             Object[] rowData = {
-            item.getId(), 
-            item.getTen_khoa_hoc(),
-            item.getNgay_tao(),
-            };
+                item.getId(),
+                item.getTen_khoa_hoc(),
+                item.getNgay_tao(),};
             model1.addRow(rowData);
         });
         tblkhoaHoc.setDefaultEditor(Object.class, null);
@@ -67,10 +63,9 @@ public class Form_khoaHoc extends javax.swing.JPanel implements Form_khoaHocHv{
         items = dao.findAll();
         items.forEach(item -> {
             Object[] rowData = {
-            item.getId(), 
-            item.getTen_khoa_hoc(),
-            item.getNgay_tao(),
-            };
+                item.getId(),
+                item.getTen_khoa_hoc(),
+                item.getNgay_tao(),};
             model2.addRow(rowData);
         });
         tblkhoHoc2.setDefaultEditor(Object.class, null);
@@ -113,35 +108,33 @@ public class Form_khoaHoc extends javax.swing.JPanel implements Form_khoaHocHv{
         }
     }
 
-@Override
-public void setForm(Course entity) {
-   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    txtIDkhoaHoc.setText(entity.getId());
-    txtKhoahoc.setText(entity.getTen_khoa_hoc());
-    txtngayTao.setText(String.valueOf(entity.getNgay_tao()!= null ? sdf.format(entity.getNgay_tao()) : "") );
-}
-
-@Override
-public Course getForm() {
-    Course entity = new Course();
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-    try {
-        entity.setId(txtIDkhoaHoc.getText());
-        entity.setTen_khoa_hoc(txtKhoahoc.getText());
-
-        // Sửa chỗ này: dùng sdf.parse thay vì new Date(String)
-        if (!txtngayTao.getText().isEmpty()) {
-            entity.setNgay_tao(new java.sql.Timestamp(sdf.parse(txtngayTao.getText()).getTime()));
-        }
-        return entity; // Đừng return null nếu thành công
-
-    } catch (Exception e) {
-        e.printStackTrace();
-        XDialog.alert("Lỗi nhập liệu: " + e.getMessage());
-        return null;
+    @Override
+    public void setForm(Course entity) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        txtIDkhoaHoc.setText(entity.getId());
+        txtKhoahoc.setText(entity.getTen_khoa_hoc());
+        txtngayTao.setText(String.valueOf(entity.getNgay_tao() != null ? sdf.format(entity.getNgay_tao()) : ""));
     }
-}
+
+    @Override
+    public Course getForm() {
+        Course entity = new Course();
+
+        try {
+            entity.setId(txtIDkhoaHoc.getText());
+            entity.setTen_khoa_hoc(txtKhoahoc.getText());
+
+            // Sửa chỗ này: dùng sdf.parse thay vì new Date(String)
+            Date ngay = new Date();
+            entity.setNgay_tao(ngay);
+            return entity; // Đừng return null nếu thành công
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            XDialog.alert("Lỗi nhập liệu: " + e.getMessage());
+            return null;
+        }
+    }
 
     @Override
     public void create() {
@@ -184,6 +177,7 @@ public Course getForm() {
         int rowCount = tblkhoaHoc.getRowCount();
 
     }
+
     @Override
     public void moveFirst() {
         this.moveTo(0);
@@ -216,8 +210,6 @@ public Course getForm() {
             this.edit();
         }
     }
-
- 
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
