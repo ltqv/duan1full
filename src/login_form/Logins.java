@@ -55,6 +55,16 @@ public class Logins extends javax.swing.JFrame implements LoginController {
         UserDAO dao = new UserDAOImpl();
         User user = dao.findByUsername(username);
 
+        if (username.isEmpty()) {
+            XDialog.alert("Chưa nhập tên!");
+        } else if (password.isEmpty()) {
+            XDialog.alert("Chưa nhập mật khẩu!");
+        } else if (user == null) {
+            XDialog.alert("Sai tên đăng nhập!");
+        } else if (!password.equals(user.getMat_khau())) {
+            XDialog.alert("Sai mật khẩu đăng nhập!");
+        }
+
         if (user != null && password.equals(user.getMat_khau())) {
             XAuth.user = user;
 

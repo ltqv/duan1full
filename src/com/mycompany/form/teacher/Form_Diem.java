@@ -4,7 +4,6 @@ import com.raven.DAO.ScoreDAO;
 import com.raven.DAOImpl.ScoreDAOImpl;
 import com.raven.entity.Score;
 import com.raven.util.XDialog;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
@@ -31,6 +30,7 @@ public class Form_Diem extends javax.swing.JPanel implements com.raven.Controlle
             public void ancestorMoved(AncestorEvent event) {
             }
         });
+        txtngayCham.setEnabled(false);
     }
 
     @Override

@@ -11,7 +11,7 @@ public class UserDAOImpl implements UserDAO {
     String createSql = "INSERT INTO NguoiDung(id, ten_dang_nhap, mat_khau, ho_ten, so_dien_thoai, email, vai_tro, ngay_tao) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
     String updateSql = "UPDATE NguoiDung SET ten_dang_nhap=?, mat_khau=?, ho_ten=?, so_dien_thoai=?, email=?, vai_tro=?, ngay_tao=? WHERE id=?";
     String deleteSql = "DELETE FROM NguoiDung WHERE id=?";
-    String findAllSql = "SELECT * FROM NguoiDung";
+    String findAllSql = "SELECT * FROM NguoiDung WHERE vai_tro = 'GIAO_VIEN' OR vai_tro = 'HOC_VIEN'";
     String findByIdSql = "SELECT * FROM NguoiDung WHERE id=?";
     String findByUsername = "SELECT * FROM NguoiDung WHERE ten_dang_nhap=?";
     String findStudent = "SELECT n.id, n.ho_ten, n.so_dien_thoai, n.email, l.id, l.id_giang_vien FROM NguoiDung n JOIN LopHoc l ON n.id=l.id_giang_vien";

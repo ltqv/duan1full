@@ -24,6 +24,7 @@ public class Form_lsHocTap extends javax.swing.JPanel implements Form_lsHoctapHv
 
     public Form_lsHocTap() {
         initComponents();
+        txtID.setEditable(false);
         this.addAncestorListener(new AncestorListener() {
             @Override
             public void ancestorAdded(AncestorEvent event) {
@@ -37,6 +38,7 @@ public class Form_lsHocTap extends javax.swing.JPanel implements Form_lsHoctapHv
             @Override
             public void ancestorMoved(AncestorEvent event) {
             }
+            
         });
 
     }
